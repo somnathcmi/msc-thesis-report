@@ -1,0 +1,12 @@
+\contentsline {section}{\numberline {1}Introduction}{3}%
+\contentsline {subsection}{\numberline {1.1}Sketch of proof}{3}%
+\contentsline {subsection}{\numberline {1.2}Notations}{4}%
+\contentsline {section}{\numberline {2}Preliminaries}{5}%
+\contentsline {subsection}{\numberline {2.1}Algebraic Circuits}{5}%
+\contentsline {subsection}{\numberline {2.2}Markov Inequality}{6}%
+\contentsline {subsection}{\numberline {2.3}Norms}{7}%
+\contentsline {section}{\numberline {3}Algebraic Geometry}{13}%
+\contentsline {subsection}{\numberline {3.1}$\epsilon $-Net for Variety}{15}%
+\contentsline {section}{\numberline {4}Robust Hitting Set}{18}%
+\contentsline {section}{\numberline {5}Existential Theory of Reals}{22}%
+\contentsline {section}{\numberline {6}Algorithm}{23}%

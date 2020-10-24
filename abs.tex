@@ -1,0 +1,11 @@
+\newcommand\abs{
+\begin{abstract}
+\npara
+In this paper authors study the complexity of constructing a hitting set for closure of VP, the class of polynomials that can be infinitesimally approximated by polynomials that are computed by polynomial sized algebraic circuits. Specifically, authors prove that there is a PSPACE algorithm which given $n,s,r$ in unary outputs a set of inputs from $\IQ^n$ of size $poly(n,s,r)$, with $poly(n,s,r)$ bit complexity, that hits all $n$-variate polynomials of degree $r$ which are in the limit of polynomials computed by size $s$ algebraic circuits.
+We say a set $\SH$ consisting of $n$-tuples of rational numbers hits a polynomial $p$ in n variables, if there is at least one element in $\SH$ on which $p$ evaluates to non-zero. It was known that a random set of $n$-tuples of the same size is a hitting set, but the best deterministic construction known before this work was in EXPSPACE.
+
+Hitting sets can be constructed for VP in PSPACE (Mul17). The authors study this construction carefully to try and see if this can be modified to work for VP closure as well. They identify the main technical difficulty in extending the existing constructions known for VP to the closure of VP. They come up with the notion of a robust hitting set. A set of inputs is said to be a robust hitting set if for every nonzero polynomial that can be computed by a polynomial sized algebraic circuit there is an element of the set on which this polynomial evaluates to a not too small value.
+
+The authors show the existence of such robust hitting sets using anti-concentration results for polynomials and some tools from algebraic geometry. Then using the existential theory of reals they give a PSACE construction.
+\end{abstract}
+}

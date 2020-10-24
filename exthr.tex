@@ -1,0 +1,62 @@
+\newcommand\exthr{
+\section{Existential Theory of Reals}
+\npara
+We will need the following theorem regarding the decidability of existential formulas over the reals. Formulas are constructed as follows. The atoms are polynomial equalities "$f(\VEC x)=0$" or inequalities "$f(\VEC x)\ge0$".
+From them we build formulas in a similar fashion to the way we build formulas in first order logic using the connectives $\neg,\vee,\wedge$ and the quantifiers $\exists$. For a set of polynomials $\SF\subset \IR[\VEC x]$, an $\SF$-formula is a formula in which all the polynomials appearing in the atoms are from $\SF$.
+
+\begin{theorem}[Existential theory of reals is in PSPACE]
+Let $\SF\subset \IR[\VEC x]$ be a set of $poly(n)$ polynomials each of degree at most $r=poly(n)$ and let $\exists \VEC x F(\VEC x)$ be a sentence where $F(\VEC x)$ is a quantifier free $\SF$-formula. There is a PSPACE algorithm for deciding the truth of the sentence, where the size of the input to the algorithm is the bit complexity of the formula $F$.
+\end{theorem}
+We denote by $\Psi$ the universal circuit for $n$-variate homogeneous circuits of size $s$ and degree $r$. 
+
+Let $m=|\SH|$. Let $\SH=\{\VEC v_1,\VEC v_2,	\VEC v_3,...,\VEC v_m\}\subset G_{\delta,r}$ be the potential candidate. $\SH$ is $\eta$-robust hitting set iff
+$$
+\Large\forall \VEC a\Big[\psi(\VEC a,1) \implies \phi(\VEC a,\eta c)\Big]
+$$
+or in other words $\SH$ is not $\eta$-robust hitting set if 
+$$
+\Large\exists \VEC a\Big[\psi(\VEC a,1)\ \wedge\ \neg\phi(\VEC a,\eta c)\Big]
+$$
+Where $c$ is constant for given $n,s,r$ and
+
+$$\Large\phi(\VEC a,\epsilon)=\exists i\in[m]\Big[|\Psi(\VEC v_i,\VEC a)|\ge \epsilon\Big]$$
+$$\psi(\VEC a,1)=\Large\exists\VEC v\in [-1,1]^n\Big[|\Psi(\VEC v,\VEC a)| \ge 1\Big] $$
+
+We will find the value of $c$. Next lemma shows existence of formula $\phi$.
+
+\begin{lemma}
+Let $n,s,r$ be natural numbers and $\epsilon>0$ be a rational number with $poly(n)$ bit complexity. For real vectors $\VEC v, \VEC a$ there exists an existential sentence over the reals, $\varphi(\VEC v,\VEC a,\epsilon)$, such that $\varphi(\VEC a,\VEC v,\epsilon)$ is true iff the polynomial computed by the universal circuit for size $s$ and degree $r$, whose auxiliary variables are set to $\VEC a$, evaluates on input $\VEC v$, in absolute value, to at least
+$\epsilon$. That is, $|\Psi(\VEC v,\VEC a)| \ge \epsilon.$
+\end{lemma}
+\begin{proof}
+For each gate $u$ of $\Psi$ let $\Psi_u(\VEC x,\VEC y)$ be the polynomial computed at $u$. For each gate $u$ of $\Psi$ let $z_u$ be a new variable and denote with $z_o$ be the variable corresponding to the output
+gate. 
+
+For each internal gate we assign a polynomial equation as follows: If $u$ is an addition gate with children $w_1$ and $w_2$ then we assign the equation $z_u-(z_{w_1}+z_{w_2})=0$ to $u$. If it is a multiplication gate with children $w_1,w_2$ then we assign the equation $z_u-z_{w_1}\cdot z_{w_2}=0$ to $u$. In addition we assign the inequality $z_o^2 \ge \epsilon^2$ to the output gate. For an input gate $u$ corresponding to a variable $x_i$ consider the equation $z_u-v_i=0.$ For an input gate corresponding to $y_i$ we have the equation
+$z_u-a_i=0.$ 
+
+Let $\SF$ be the set of all equalities and inequalities constructed above. Consider the sentence 
+$$
+\varphi(\VEC v,\VEC a,\epsilon)=\exists \VEC z \bigwedge_{g\in\SF}g(\VEC z)
+$$
+where $\exists \VEC z$ is a short hand for writing $\exists z_u$ for all gates $u$ in $\Psi$. It is not hard to see that the exists an
+assignment to the $z_u$ satisfying this sentence iff $|\Psi(\VEC v,\VEC a)|\ge\epsilon.$
+\end{proof}
+\begin{corollary}
+Let $\SH=\{\VEC v_1,\VEC v_2,\VEC v_3,...,\VEC v_m\}\subset G_{\delta,r}$ and $|\SH|=m$. Then there exist a sentence $\phi(\VEC a, \epsilon)$ such that $\phi(\VEC a,\epsilon)$ is true iff there is $\VEC v_i\in\SH$ such that $\varphi(\VEC v_i,\VEC a,\epsilon)$ is true.
+\end{corollary}
+The next lemma shows that deciding whether a polynomial computed by the universal circuit evaluates to at least $1$ on some input from $[-1,1]^n$ can be done in PSPACE.
+
+Next we show existence of formula $\psi$.
+
+\begin{lemma}
+Let $f(\VEC x)\in\IR[\VEC x]$ and $f(\VEC x)=\Psi(\VEC x,\VEC a).$ Given $n,s,r$ in unary, there is a PSPACE algorithm for deciding whether there exists $\VEC v\in[-1,1]^n$ on which $|f(\VEC v)|\ge 1$.
+\begin{proof}
+Let $\SF$ be the set of polynomials in the definition of $\phi(\VEC v,\VEC a, 1)$ in Lemma above. Define
+$$
+\psi(\VEC a,1)=\exists \VEC v\exists \VEC z\Bigg(\bigwedge_{g\in\SF}g(\VEC z)\Bigg)\bigwedge\Bigg(\bigwedge_i(1-v_i^2)\ge 0\Bigg)
+$$
+It is not hard to see that $\psi(\VEC a,1)$ is true iff there exists $\VEC v\in[-1,1]^n$ such that $|f(\VEC v)|=|\Psi(\VEC v,\VEC a)|\ge 1.$
+\end{proof}
+\end{lemma}
+}

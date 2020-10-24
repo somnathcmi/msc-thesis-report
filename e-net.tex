@@ -1,0 +1,124 @@
+\newcommand\enet{
+\npara
+\subsection{$\epsilon$-Net for Variety}
+\begin{definition}[$\epsilon$-Net]
+Let $V\subset \IC^N.$ A set $E\subset V$ is an $\epsilon$-net for $V$ if for every $\VEC v\in V$ there exists $\VEC e \in E$ such that $\|\VEC e-\VEC v\|\le \epsilon$.
+\end{definition}
+\begin{theorem}[$\epsilon$-Net for Axis-parllel Random Varieties]
+Let $N\ge2$ and $V \subset \IC^N$ be a $d$-dimentional axis-parallel random variety of degree $D$ and $d<\sqrt{N}$. Denote $\hat V \subset V \cap [-1,1]^{N}_\IC$. Then, for $\epsilon > 0,$ there exist $\epsilon$-net $E \subset \hat V$ such that $|E|\le D(1750N^3/\epsilon^2)^{d+1}$
+\end{theorem}
+\thmpara
+\begin{proof}
+We prove claim by induction on dimension of variety. If $d=0$ then $|\hat V| \le D$ and claim is trivial since for any $\epsilon>0$ we take $E\DEF\hat V$. 
+\npara
+
+For $d>0$, idea of proof is following: For some $\eta>0$, we construct $\eta$ grid\footnote{Here we mean $\eta$-grid in $[-1,1]^{2N}_\IR$} in $[-1,1]^N_\IC$. We need $1/\eta$ to be an integer\footnote{Strictly speaking this is not required to prove the claim but this will make out life little easier.} so that we get all cuboids of side $\eta$. Next, for some $\delta>0$ and for each hyperplane contributing to the grid, we apply induction hypothesis to get $\delta $-net\footnote{Ideally we would like to use $\epsilon$-net but calculations doesent allow it.} for the part of variety in the hyperplane. Union of all such $\delta$-nets produced will be our almost $\epsilon$-net for some particular values of $\delta$ and $\eta$. Finally we calculate the values of $\delta$ and $\eta$ and prove the bound on size of $\epsilon$-net. 
+
+Assume $d>0$. Let $\alpha \in \IC$, $1\le i \le N$, define 
+\begin{align*}
+H_i(\alpha) &\DEF \{ \VEC v \in \IC^N : v_i = \alpha \}.\\
+\hat V_i(\alpha) &\DEF H_i(\alpha) \cap \hat V.
+\end{align*}
+$H_i(\alpha)$ is hyperplane obtained by fixing $i^{th}$ coordinate and $\hat V_i(\alpha)$ is part of $\hat V$ which is in $H_i(\alpha)$. Note that since $V$ is axis-parallel random, for any $\alpha \in \IC$, dimention of $\hat V_i(\alpha)$ is $d-1$, degree at most $D$ and is axis-parallel random\footnote{This needs proof}. By induction hypothesis there is a $\delta$-net $E_i(\alpha) \subset \hat V_i(\alpha)$ such that $|E_i(\alpha)|\le D(1750N^3/\delta^2)^d$ for $\delta>0$. Let $\eta$ be the constant such that $1/\eta$ is integer. Let
+$$E'=\bigcup_{i\in [N],a,b \in \{-1,-1+\eta,...,1-\eta,1\}}E_i(a+\iota b)$$
+Using induction hypothesis and fact that we are working in $\IC^N$, we get
+$$
+|E'| \le N\cdot(2/\eta+1)^2\cdot D(1750N^3/\delta^2)^{d}
+$$
+Let
+$$H=\bigcup_{i\in [N],a,b \in \{-1,-1+\eta,...,1-\eta,1\}}H_i(a+\iota b)$$
+Consider set $[-1,1]^N\backslash H$. This set is unoin of open -walls are removed- cuboids of side lenght $\eta$. Any irreducible component of $\hat V$ will either completely inside of a cuboid or intersect the wall of it or disjoint from it. Consider the set of components, each one of which is completely inside of one cuboid\footnote{Note that these are the components which are not covered by $E'$.}, we pick any one point from each of them. Let $B$ be the set of such points. Since there are at most $D$ components\footnote{this needs a proof}, we can have at most $D$ such points, thus $|B| \le D$. Define $E\DEF E'\cup B$. We claim that for 
+$$
+\delta=\epsilon\Big(1-\frac{1}{\sqrt{2N}}\Big),\ \ \eta=\frac{1}{\lceil\frac{2N}{\epsilon}\rceil}
+$$ 
+$E$ is $\epsilon$-net of $\hat V$. For any $\VEC v \in \hat V$, if the component containing $\VEC v$ intersects wall of some cuboid and let $\VEC u$ be the point in intersection, then there is $\VEC e \in E'$ such that $\|\VEC e-\VEC u\|\le \delta$ and hence $\|\VEC e-\VEC v\| \le \delta + \sqrt{2N}\eta\le \epsilon$. If component containing $\VEC v$ is completely contained in one of the cuboid then there is $\VEC e \in B$ such that $\|\VEC e-\VEC v\|\le \sqrt{2N}\eta\le \epsilon$. Hence $E$ is $\epsilon$-net for $\hat V$.
+
+We now prove that size of $E$ is as expected.
+\begin{align*}
+|E|&\le N\Big(\frac{2}{\eta}+1\Big)^2D\Big(\frac{1750N^3}{\delta^2}\Big)^{d} + D \\
+&= N\Big(2\Big\lceil\frac{2N}{\epsilon}\Big\rceil+1\Big)^2D\Big(\frac{1750N^3}{\epsilon^2}\big(1-\frac{1}{\sqrt{2N}}\big)^{-2}\Big)^{d} + D\\
+&\le N\Big(\frac{5N}{\epsilon}\Big)^2D\Big(\frac{1750N^3}{\epsilon^2}\Big)^d\cdot\Big(1+\frac{3\sqrt{2}}{\sqrt{N}}\Big)^d+D\tag{$\because N\ge2$}\\
+&\le \Bigg(\Big(\frac{25N^3}{\epsilon^2}\Big)\Big(\frac{1750N^3}{\epsilon^2}\Big)^d\cdot e^{3\sqrt{2}}+1\Bigg)D\tag{$\because d<\sqrt{N}$}\\
+&\le D\Big(\frac{1750N^3}{\epsilon^2}\Big)^{d+1}
+\end{align*} 
+Here we used the fact that $(1+3\sqrt{2}/\sqrt N)^d<69.6$ and $N \ge 2$.
+\end{proof}
+We will now prove that if $V'=T(V)$ be the axis-parallel random variety, where $T=I+A$ and $A_{ij} \in [0,\delta]$ for some $\delta>0$, for any $\epsilon>0$ there is $\epsilon'>0$ such that if $E'$ is $\epsilon'$-net for $V'$ then we can get an $\epsilon$-net for $V$. Before starting the proof of claim, we will state definitions and useful lemmas required in it.
+\begin{definition}[Operator Norm]
+Operator norm of linear operator $A$ over normed space $V$ is defined as 
+$$
+\|A\|_{op}\DEF\sup_{\VEC x\in V} \frac{\|A\VEC x\|}{\|\VEC x\|}
+$$.
+\end{definition}
+\begin{lemma}
+Let $A$ be the linear operator on $\IC^n$ such that for $1\le i,j \le n$, we have that $A_{ij} \in [0,\delta]$ for some $\delta>0$. Then operator norm of $A$ is at most $n\delta$.
+\end{lemma}
+\begin{proof}
+Let $\VEC x\in \IC^n$,
+\begin{align*}
+\|A\VEC x\| &= \sqrt{\sum_{i=1}^{n}\Bigg(\Big|\sum_{j=1}^{n}A_{ij}x_j\Big|\Bigg)^2} \le \sqrt{\sum_{i=1}^{n}\Bigg(\sum_{j=1}^{n}\big|A_{ij}\big|\big|x_j\big|\Bigg)^2} \le \sqrt{\sum_{i=1}^{n}\Bigg(\sum_{j=1}^{n}\delta \big|x_j\big|\Bigg)^2}\\
+&\le \delta\sqrt{n}\sum_{j=1}^{n}\big|x_j\big| \le n\delta\cdot\|\VEC x\|
+\end{align*}
+\end{proof}
+\begin{lemma}[Geometric Series of Matrices]
+Let $A$ be a $n\times n$ matrix such that $\lim_{k \to \infty}A^k = 0$ and $I-A$ is invertible. Then 
+$$\sum_{k=0}^\infty A^k = (I-A)^{-1}.$$ 
+Using that show that if $T=I+B$ is an invertible transformation where $B$ is the $n\times n$ matrix such that $B_{ij} \in [0,\delta]$ for $1\le i,j \le n$ and $\delta \le n^{-2}$, then 
+$$
+T^{-1} = I+\sum_{k=1}^{\infty} (-B)^k
+$$.
+\end{lemma}
+\begin{proof}
+Let $S_m = \sum_{k=0}^{m} A^k$ be the sequence of partial sums then note that $S_m-AS_m = I-A^{m+1}$ which implies $\lim_{m\to \infty}(S_m-AS_m)=I$ since $\lim_{k \to \infty}A^k=0$. Thus $S_m$ converges to $(I-A)^{-1}$.
+\npara
+
+For the second part note that 
+$$
+-\frac{1}{n^{k+1}}=-\frac{n^{k-1}}{n^{2k}}\le -\delta^kn^{k-1}\le (-B)^k_{ij} \le \delta^kn^{k-1} \le \frac{n^{k-1}}{n^{2k}} =\frac{1}{n^{k+1}}
+$$
+Since sequences $1/n^{k+1}$ and $-1/n^{k+1}$ converges to $0$ for $n\ge2$, we have that $\lim_{k\to \infty} (-B)^k_{ij} = 0$. Hence $\lim_{k \to \infty} (-B)^k = 0$. Therefore 
+$$
+T^{-1} = (I-(-B))^{-1} = \sum_{k=0}^\infty(-B)^k=I+\sum_{k=1}^\infty(-B)^k
+$$.
+\end{proof}
+\npara
+
+Now we are ready to prove Theorem 1 even if variety is not axis-parallel random. Note that if $V=V(\mathscr{F})$ for $\mathscr{F}\subset \IC[\VEC x]$, then $V'=V(\mathscr{F}\circ T^{-1})$. Since $\VEC v' \in V'$ iff for all $f \in \mathscr{F},f\circ T^{-1}(\VEC v')=0$.
+\begin{theorem}[$\epsilon$-Net for Varieties]
+Let $N\ge 2$ and $V' = T(V)\subset \IC^N$ be the variety of dimension $d\ge 1$, where $T=I+A$ and $A_{ij}\in [0,N^{-2d}]$ for $1\le i,j\le N$. If $E'$ is an $\epsilon'$-net of $V' \cap [-1,1]^N_{\IC}$ then $E=T^{-1}(E')$ is $\epsilon$-net for $V\cap [-(1-N^{-1}),(1-N^{-1})]$ where $\epsilon = (1+N^{-1})\epsilon'$.
+\end{theorem}
+\thmpara
+\begin{proof}
+The operator norm of $A$ is $\|A\|_{op}\le N^{1-2d} \le 1/N <1$, since $N\ge2$ and $A_{ij} \in [0,N^{-2d}]$. This implies, 
+$$
+T\Bigg(\Big[-(1-\frac{1}{N}),(1-\frac{1}{N})\Big]^N_\IC\Bigg) \subset [-1,1]^N_\IC
+$$
+Where $[-(1-\frac{1}{N}),(1-\frac{1}{N})]^N_\IC=[-(1-\frac{1}{N}),(1-\frac{1}{N})]^N+i[-(1-\frac{1}{N}),(1-\frac{1}{N})]^N$. Above containment holds because, for any $\VEC v\in [-(1-1/N),(1-1/N)]^N_\IC$ which is in the direction of basis vector, $\|T(\VEC v)\| \le \|\VEC v\| + \|A\|_{op}\|\VEC v\| \le 1$. Hence it hold for any vector in that box. 
+\npara
+
+Let $T^{-1} = I + B$ then $B = \sum_{k=1}^{\infty}(-A)^k$. If $k$ is even $(-A)_{ij}^k\le N^{k-1}/N^{2dk}$, and if $k$ is odd $(-A)_{ij}^k\le 0$, thus we have,
+$$
+|B_{ij}| = \Big|\sum_{k=1}^{\infty}(-A)^k_{ij}\Big|\le\Big|\sum_{k=1}^{\infty}\frac{N^{2k-1}}{N^{4dk}}\Big|=\frac{N}{N^{4d}-N^2}
+$$
+Thus $\|B\|_{op}\le 1/(N^{4d-2}-1)\le 1/N$. 
+
+Let $\VEC u \in V \cap [-(1-\frac{1}{N}),(1-\frac{1}{N})]^N_\IC$, then
+$$
+T(\VEC u) \in T(V) \cap T\Bigg(\Big[-(1-\frac{1}{N}),(1-\frac{1}{N})\Big]^N_\IC\Bigg) \subset V' \cap [-1,1]^N_\IC
+$$
+Therefore there is $\VEC e'\in E'$ such that $\|\VEC e'-T(\VEC u)\|\le \epsilon'$. Hence we have 
+$$
+\|T^{-1}(\VEC e')-\VEC u\| = \|T^{-1}(\VEC e'-T(\VEC u))\| \le \|T^{-1}\|_{op}\cdot \|\VEC e'-T(\VEC u)\| \le (1+1/N)\epsilon'.
+$$
+\end{proof}
+\begin{theorem}[$\epsilon$-Net for Varieties]
+Let $V\subset \IC^N$ be the variety of dimension $d$, $\hat V = V \cap [-(1-\frac{1}{N}),(1-\frac{1}{N})]$. Then for any $\epsilon>0$, there exist $\epsilon$-net $E\subset \hat V$ such that $|E| \le D(15750N^6/\epsilon^2)^{d+1}$.
+\end{theorem}
+\begin{proof}
+Since $d < \sqrt{N^2+1} \le \sqrt{2N^2}$, we work in space $\IC^{2N^2}$ and think of our space $\IC^N$ as subspace of $\IC^{2N^2}$. Now we apply $T$ to make our variety axis-parallel random and we invoke Theorem 1 above to get $\epsilon'$-net $E'$ for $T(V)\cap[-1,1]^{2N^2}_\IC$. We have that $|E'|\le D(14000N^6/\epsilon'^2)^{d+1}$. By above theorem, we have that $E=T^{-1}(E')$ is $\epsilon'\Big(1+\frac{1}{2N^2}\Big)$-net for 
+$$
+V\cap\Big[-(1-\frac{1}{2N^2}),(1-\frac{1}{2N^2})\Big]^{2N^2}_\IC \supset V \cap \Big[-(1-\frac{1}{N}),(1-\frac{1}{N})\Big]^{2N^2}_\IC= V \cap \Big[-(1-\frac{1}{N}),(1-\frac{1}{N})\Big]^{N}_\IC
+$$
+Substituting $\epsilon'=\epsilon\cdot(1+\frac{1}{2N^2})^{-1}$, we get $\epsilon$-net $E$ of size $|E| \le D(15750N^6/\epsilon^2)^{d+1}$ for $N\ge2$.
+\end{proof}
+}

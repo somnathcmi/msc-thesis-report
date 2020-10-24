@@ -1,0 +1,132 @@
+\newcommand\hittset{\npara
+\section{Robust Hitting Set}
+\begin{definition}[$\eta$-Robust Hitting Set]
+A subset $\SH \subset \IC^n$ is an $\eta$-robust hitting set of $\SF\subset \IC[\VEC x]$, if for every $f\in \SF$, there is $\VEC v\in \SH$ such that $f(\VEC v) \ge \eta\cdot \|f\|_2$.
+\end{definition}
+\thmpara
+We say that $\SH$ is an $\eta$-robust hitting set for size $s$ and degree $r$ if it is an $\eta$-robust hitting set for the set of $n$-variate polynomials that can be computed by size $s$ and degree $r$ homogeneous
+algebraic circuits.
+\npara
+
+\begin{theorem}
+If finite $\SH$ is $\eta$-robust hitting set for $\SF\subset\IC[\VEC x]$ then it is $\eta$-robust hitting set for closure\footnote{In Euclidean topology} of $\SF$.
+\end{theorem}
+\thmpara
+\begin{proof}
+Let $f$ is in closure of $\SF$. If $f$ is not a limit point of $\SF$ then $f\in\SF$ and claim hold. If $f$ is limit point of $\SF$ then there is sequence $\{f_n\}$ in $\SF$ such that $\lim_{n\to \infty}f_n=f$. Since $\SH$ is finite and for every $f_n$ there is $\VEC v\in\SH$ such that $|f_n(\VEC v)|\ge \eta\cdot\|f_n\|_2$ for all $n$, there is a subsequence $f_{n_i}$ such that there is $\VEC v_0\in\SH$ for all $f_{n_i}$ such that $|f_{n_i}(\VEC v_0)|\ge \eta\cdot\|f_{n_i}\|_2$ and converges to $f$. Using $\lim_{i\to\infty}\|f_{n_i}\|_2 = \|f\|_2$\footnote{Prove if sequence of functions converges then sequence of their norm converges.} and $\lim_{i\to\infty}|f_{n_i}(\VEC v_0)|=|f(\VEC v_0)|$ we get $|f(\VEC v_0)| \ge \eta\cdot\|f\|_2$. Thus $\VEC v_0\in \SH$ hits $f$.
+\end{proof}
+\begin{corollary}
+If $\SH\subset \IC^n$ is $\eta$-robust hitting set for size $s$ and degree $r$ then it is $\eta$-robust hitting set for $V(n,s,r)$.
+\end{corollary}
+\begin{proof}
+$V(n,s,r)$ is closure of a set which contain coefficient vectors of all $n$-variate polynomials of degree $r$ that can be computed by size s circuits. Claim is trivial using above theorem.
+\end{proof}
+Next we prove if we have hitting set for $\epsilon$-net of a variety then we can get hitting set for the complete variety.
+\begin{lemma}
+Let $E\subset V\subset[-1,1]^{N_{n,r}^{hom}}_\IC$ is an $\epsilon$-net for variety $V$ and $\SH$ is $\eta$-robust hitting set for the polynomials whose coefficient vectors in $E$ and $\eta<1$. Also $V$ is such that, if $\bm f \in V$ then $\alpha \bm f \in V$, for all $\alpha$. Further $\eta, \epsilon, N^{hom}_{n,r}$ and $r$ satisfy
+\begin{align*}
+\epsilon\cdot\sqrt{2N_{2n,r}^{hom}}<\frac{1}{8}\eta\cdot 2^n\cdot e^{-r}\tag{A1}
+\end{align*}
+then $\SH$ is $\eta/4$-robust hitting set for $V$.
+\end{lemma}
+\begin{proof}
+Let $\bm f \in V$. Assume w.l.o.g maximal coefficient of $f$ is\footnote{This can be easily obtained by multiplying $f$ by a field element} $1/2$. Let $\bm g \in E$ such that $\|\bm f - \bm g\|_2 \le \epsilon$. By Lemma 2.9,
+\begin{align*}
+\|\Re(f)-\Re(g)\|_\infty, \|\Im(f)-\Im(g)\|_\infty \le \|\bm f- \bm g\|_2\cdot\sqrt{N_{2n,r}^{hom}}
+\end{align*}
+Thus 
+\begin{align*}
+\|f-g\|_{\infty}&=\max_{\VEC v\in[-1,1]^n}|(f-g)(\VEC v)| =\max_{\VEC v\in[-1,1]^n}|(\Re(f)-\Re(g))(\VEC v) + \iota (\Im(f)-\Im(g))(\VEC v)|\\
+&\le \sqrt{2}\cdot \|\bm f- \bm g\|_2\cdot\sqrt{N_{2n,r}^{hom}} \le \sqrt{2}\cdot \epsilon \cdot\sqrt{N_{2n,r}^{hom}}
+\end{align*}
+Since maximal coefficient of $f$ is $1/2$ and $\|\bm{f}-\bm{g}\|_2 \le \epsilon$ one of the coefficient of $g$ is at least $\frac{1}{2}-\epsilon$. Hence for $\epsilon<\frac{1}{10}$, one of the coefficient of $g$, and hence\footnote{This needs proof} $\Re(g)$, is at least $\frac{2}{5}\ge \frac{1}{4}$. 
+\begin{align*}
+|f(\VEC v)|&\ge |g(\VEC v)|-|(f-g)(\VEC v)| \ge |g(\VEC v)|-\|f-g\|_\infty \ge \eta\cdot\|g\|_2-\sqrt{2N_{2n,r}^{hom}}\cdot\epsilon\\
+&\ge\eta\cdot\|g\|_2 - \frac{1}{8}\cdot\eta\cdot 2^{n}\cdot e^{-r} \tag{From A1 in Theorem statement}\\
+&\ge\frac{1}{2} \eta \cdot \|g\|_2\tag{By Lemma 2.7, $\|g\|_2\ge\|\Re(g)\|_2\ge \frac{1}{4}\cdot2^{n}\cdot e^{-r}$}\\
+&\ge\frac{1}{4}\eta\cdot\|f\|_2
+\end{align*}
+Last inequality follows since\footnote{Minkowski Inequality needs proof},
+\begin{align*}
+\|f\|_2 &\le \|g\|_2+\|f-g\|_2 = \|g\|_2+\|\Re(f-g)\|_2+\|\Im(f-g)\|_2\\
+&\le \|g\|_2+\|\Re(f-g)\|_\infty+\|\Im(f-g)\|_\infty\\
+&\le \|g\|_2+2\epsilon\cdot\sqrt{N_{2n,r}^{hom}} \le \|g\|_2 + \sqrt 2 \cdot \frac{1}{8}\eta\cdot2^n\cdot e^{-r}\\
+&\le \|g\|_2+\frac{\eta}{\sqrt 2}\cdot\|g\|_2 \le 2\cdot \|g\|_2
+\end{align*}
+\end{proof}
+Next we prove that, for our variety there is $\eta$-robust hitting set.
+\begin{theorem}
+Let $V\subset[-1,1]^{N}_\IC$ be a variety of degree $D$ and dimension $d$ and satisfy assumptions in above theorem. Let $\eta = 2^{-n}\cdot\frac{1}{2\cdot(C_{CW}\cdot r \cdot n)^r}$ and $\delta = \frac{\eta}{(16nr^2)^{n+1}}$. There exist $\eta/4$-robust hitting set $\SH\subset G_\delta^\IC$ for $V$ of size 
+$$
+|\SH| = \max \{2r\log D,76r^2d(n+r)\}
+$$
+\end{theorem}
+\begin{proof}
+Let k = , Sample $k$ points $\VEC v_1,\VEC v_2,\VEC v_3, ... \VEC v_k$ from $G_\delta^\IC$ uniformly and independently at random. Let $\SH = \{\VEC v_1,\VEC v_2,\VEC v_3, ... \VEC v_k\}$.
+
+Let $\epsilon = (\frac{1}{N})^r$ and $E\subset V \cap [-(1-\frac{1}{N}),(1-\frac{1}{N})]^N_\IC$ be the $\epsilon$-net gauranteed by theorem (..). For $\alpha = \eta\cdot\|g\|_2$, it follows from Theorem 3.6 and union bound that the probability that there exist $g$  such that for all $1\le i\le k$, 
+$$
+\frac{g(\VEC v_i)}{\|g\|_2} \le \eta - \frac{1}{2}\delta \cdot (16nr^2)^{2n+1} = \frac{\eta}{2} 
+$$
+is at most 
+\begin{align*}
+(C_{CW}\cdot r \cdot (2\eta)^{1/r})^k\cdot |E| &\le (C_{CW}\cdot r \cdot (2\eta)^{1/r})^k\cdot D\cdot\Big(\frac{15750N^3}{\epsilon^2}\Big)^{d+1}\\
+&< 2^{-nk/r}\cdot n^{-k}\cdot D\cdot (N^{14}\cdot N^3\cdot N^{2r})^{d+1}\\
+&=2^{-nk/r}\cdot n^{-k}\cdot D\cdot N^{38rd}\\
+&=2^{-nk/r}\cdot n^{-k}\cdot D\cdot \binom{n+r-1}{r}^{38rd}\\
+&<2^{-nk/r}\cdot n^{-k}\cdot D\cdot 2^{38rd(n+r)}
+\end{align*}
+If $2r\log D \ge 76r^2d(n+r)$ then $k=2r\log D$, hence above inequality will be,
+\begin{align*}
+&= \frac{D\cdot 2^{38rd(n+r)}}{2^{2n\log D}\cdot n^{2r \log D}} = \frac{D}{D^{2n-1}}\cdot \frac{2^{38rd(n+r)}}{2^{\log D}}\cdot \frac{1}{n^{2r\log D}}\le 1.
+\end{align*}
+Otherwise $k=76r^2d(n+r)$, hence above inequality will be,
+\begin{align*}
+=\frac{D\cdot 2^{38rd(n+r)}}{2^{76nrd(n+r)}\cdot n^{76r^2d(n+r)}}=\frac{D}{2^{38(2n-1)rd(n+r)}}\cdot \frac{1}{n^{76r^2d(n+r)}}\le 1.
+\end{align*}
+\end{proof}
+\begin{corollary}
+There exist a constant $c$ such that for every integer $n,s,r$ for $\eta = 2^{-n}\cdot\frac{1}{2\cdot(C_{CW}\cdot n \cdot r)^r}$ and $\delta = \frac{\eta}{(16nr^2)^{2n+1}}$, there is $\eta/4$-robust hitting set $\SH\subset G_\delta^\IC$ for $V(n,s,r)$ of size $|\SH| \le (nsr)^c$.
+\end{corollary}
+\begin{proof}
+Proof is immediate from the above theorem and the fact that degree of $V(n,s,r)$ is bounded by $2^{(nsr)^{c_1}}$ for some $c_1$.
+\end{proof}
+Note that we have proved existence of robust hitting set in $\IC^n$, next we will prove existence in $\IR^n$.
+\begin{theorem}
+Let $\SH\subset\IC^n$ be the $\eta$-robust hitting set for $V(n,s,r)$. Prove that there exist $\SH_\IR\subset\IR^n$, such that $\SH_\IR$ is a $\frac{\eta}{(r+2)!}$-robust hitting set for $V(n,s,r)$. Also prove that $|\SH_\IR| = r\cdot|\SH|$.
+\end{theorem}
+\npara
+\begin{proof}
+Define set $\SH_\IR$ as,
+$$
+\SH_\IR = \{\VEC x + k\VEC y : k \in \{0,1,2,...,r\}\ {and}\ \VEC x + \iota \VEC y \in \SH\}.
+$$
+Note that $|\SH_\IR| = r\cdot|\SH|$. To prove $\SH_\IR$ is an $\frac{\eta}{(r+2)!}$-robust hitting set, we first prove it is hitting set and then we prove it is robust hitting set for $V(n,s,r)$. 
+
+The fact that $\SH_\IR$ hits each polynomial in $V(n,s,r)$ is easy. Let $f\in V(n,s,r)$ and $\VEC v = \VEC a+\iota \VEC b \in \SH$ be such that $f(\VEC v)\ne 0$. Let $f_v(z) = \VEC a+ z\VEC b$ be the univariate restriction of $f$ to one dimensional complex affine space defined by $\VEC a+z\VEC b$. $f_v$ is not identical to zero polynomial since $f_v(\iota) = f(\VEC a+\iota \VEC b) \ne 0$ and hence by fundamental theorem of algebra $f_v$ can have at most r roots. Which implies at least at one point in $\{\VEC a+k\VEC b:k\in \{0,1,2,...,r\}\}$ $f_v$ evaluates nonzero. Hence $\SH_\IR$ hits $f$ at that point.
+
+By using interpolation formula,
+$$
+f_v(\iota) = \sum_{k=0}^r c_k\cdot f_v(k)
+$$
+Where 
+$$
+c_k = \prod_{l=0,l\ne k}^{r}\frac{(\iota-l)}{(k-l)}
+$$
+Hence $|c_k| \le (r+1)!$. Since $|f(\VEC v)| \ge \eta\cdot\|f\|_2$, we have that
+\begin{align*}
+\eta\cdot\|f\|_2 \le |f(\VEC v)| = |f_v(\iota)|&= \Big|\sum_{k=0}^r c_k \cdot f_v(k)\Big| \\
+&= \Big|\sum_{k=0}^r f(\VEC a + k\VEC b)\Big|\\
+&\le (r+1)\cdot\max_k{|c_k|}\cdot\max_k{|f(\VEC a+k\VEC b)|}\\
+&\le(r+2)!\cdot\max_k{|f(\VEC a+k\VEC b)|}
+\end{align*} 
+\end{proof}
+We denote $G_{\delta,r} \DEF \{\VEC x+k\VEC y: 0\le k \le r, \VEC x+\iota \VEC y \in G_\delta^\IC\}$
+\thmpara
+\begin{corollary}
+There exist a constant $c$ such that for every integer $n,s,r$ for $\eta = 2^{-n}\cdot\frac{1}{20\cdot(C_{CW}\cdot n \cdot r^2)^r}$ and $\delta = \frac{\eta}{(16nr^2)^{2n+1}}$, there is $\eta/4$-robust hitting set $\SH\subset G_{\delta,r}$ for $V(n,s,r)$ of size $|\SH| \le (nsr)^c$.
+\end{corollary}
+\begin{proof}
+Observe that $(r+2)!<10r^r$, claim is trivial from theorem (..) and theorem (..)
+\end{proof}
+}

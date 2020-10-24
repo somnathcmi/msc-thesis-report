@@ -1,0 +1,64 @@
+\newcommand\geo{
+\npara
+\section{Algebraic Geometry}
+In this section we will give basic definitions from geometry.  
+\begin{definition}[Variety, Irreducible Variety]
+A subset $V\subset \IC^n$ is called Variety, if there exists a set of polynomials $\SF\subset\IC[\VEC x]$ such that $V=\{\VEC v\in\IC^n:\forall f\in\SF, f(\VEC v)=0\}$. Varieties are closed sets and define zariski topology over $\IC^n$. The closure of set $V\subset\IC^n$ is intersection of all closed sets containing $V$. Variety $V$ is called irreducible if for any two closed sets $V_1,V_2$ such that $V_1\cup V_2=V$ it holds that either $V_1=V$ or $V_2=V$.
+\end{definition}
+
+\begin{definition}[Dimension]
+The dimension of an irreducible variety $V$, denoted $dim(V)$ is the maximal integer $m$ such that there exist $m$ irreducible varieties $\{V_i\}$ satisfying $\emptyset\subset V_1 \subset V_2...\subset V_m \subset V$. The dimension of a reducible variety is the maximal dimension of its irreducible components.
+\end{definition}
+
+\begin{definition}[Degree]
+Let $A\subset\IC^n$ is an affine linear space. The degree of an irreducible variety $V\subset\IC^n$ is
+$$
+deg(V)=\max_{A}\{|V\cap A|:|V\cap A|<\infty\}.
+$$
+When $V$ is not irreducible, let $V=\cup_i V_i $, where $V_i$ are the irreducible components of $V$. We define $deg(V)$ as
+$$
+deg(V)=\sum_i deg(V_i).
+$$
+\end{definition}
+
+We will use following result proved in [HS80b].
+
+\begin{theorem}[Variety of easy polynomials]
+For every natural number $n,s,r$ there exists a set $W(n,s,r)\subset\IC^N$ which contains the coefficient vectors of all $n$-variate homogeneous polynomials $f\in\IC[\VEC x]$ of degree $r$ that can be computed by $n$-variate homogeneous circuits of size $s$ and degree $r$. Further, $$dim(V(n,s,r))\le(s+1+n)^2$$ and $$deg(V(n,s,r))\le(2sr)^{(s+1+n)^2}$$.
+\end{theorem}
+To prove our main result it will be convenient to consider the universal circuit. As the universal circuit for $n$-variate homogeneous circuits of size $s$ and degree $r$ has size $\bigo{sr^4}$ we obtain the following immediate corollary. Note that when speaking of the polynomials that can be computed
+by the universal circuit we think of the set of polynomials that is obtained by running over all assignments to the auxiliary variables. Indeed, for any such assignment the circuit that is obtained is homogeneous in its essential variables\footnote{This can be seen from the proof of existence of universal circuits.}.
+
+\begin{corollary}[Variety of projections of universal circuit]
+For every natural number $n,s,r$ there exists a set $V(n,s,r)\subset\IC^N$ which contains the coefficient vectors of all $n$-variate homogeneous polynomials of degree $r$ that can be computed by universal circuit for $n$-variate homogeneous circuits of size $s$ and degree $r$. Further there exist constant $c$ such that, $$dim(V(n,s,r))\le c\cdot(sr^4+1+n)^2$$ and $$deg(V(n,s,r))\le(csr^5)^{(sr^4+1+n)^2}$$.
+\end{corollary}
+
+As varieties are closed, the same variety also contains all coefficient vectors of polynomials that are limits of easy polynomials.
+
+\begin{definition}[Closure of easy polynomials]
+A homogeneous polynomial $f\in\IC[\VEC x]$ is in the closure of size $s$ and degree $r$ algebraic circuits if there exists a sequence of $n$-variate, degree $r$, homogeneous polynomials $\{f_i(\VEC x)\}$, such that each $f_i$ can be computed by a homogeneous circuit of size $s$ and degree $r$, and
+$\lim_{i\to\infty} f_i=f$. In other words, there exists a sequence of homogeneous algebraic circuits of degree $r$ and size $s$ such that the coefficients vector of the polynomials they compute converge to the coefficient vector of $f$.
+\end{definition}
+
+Next we define notion that will be helpful in upcoming proofs.
+\begin{definition}[Axis Parallel Random variety]
+We say that a variety $V$ is axis-parallel random if for any axis-parallel affine subspace $A$ (i.e. a subspace defined by setting some coordinates to constants) it holds that $$dim(V\cap A)\le dim(V)-codim(A).$$
+\end{definition}
+
+One way to think of this definition is that a variety is axis-parallel-random if by restricting a variable to a constant we move to a strictly smaller subvariety.
+
+\begin{lemma} 
+Let $V$ is axis-parallel random then for every axis-parallel affine subspace $A$, $V\cap A$ is also axis-parallel random.
+\end{lemma}
+\thmpara
+\begin{proof}
+Proof is very easy from definition.
+\end{proof}
+\npara
+Next result state that by slightly perturbing a variety makes it an axis-parallel random one. That is, we will show that for a linear transformation $T$, the variety $T(V)$ is axis-parallel random.
+
+\begin{theorem}
+Let $\delta>0$ and let $T=I_N+A$, where $I_N$ is the $N\times N$ identity matrix and $A$ is a random matrix where each $A_{ij}$ is chosen
+independently uniformly at random from $[0,\delta]$. Let $V\subset \IC^N$ be a variety of dimension $d$. Then $T(V)$ with probability $1$ $T(V)$ is axis-parallel random.
+\end{theorem}
+}

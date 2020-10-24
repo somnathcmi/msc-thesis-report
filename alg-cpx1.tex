@@ -1,0 +1,28 @@
+\newcommand\algcpx{
+\subsection{Algebraic Circuits}
+\npara
+An {\em Algebraic Circuit} is a directed acyclic graph whose leaves are labeled by either variables $x_1,...,x_n$ or elements from the field $\IF$, and whose internal nodes are labeled by the algebraic operations of addition $(+)$ or multiplication $(\times)$. Each node in the circuit computes a polynomial in the natural way, and the circuit has one or more {\em output nodes}, which are nodes of out-degree zero. The {\em size} of the circuit is defined to be the number of wires. A circuit is called {\em homogeneous} if every gate in it computes a homogeneous polynomial. 
+
+We define {\em complexity} of a polynomial to be the size of a smallest circuit computing it. \BF{VP} consist of sequences of polynomials $\{f_n\}$ such that for each $n$, complexity of $f_n$ and degree of $f_n$ is polynomially bounded in $n$, that is there exist polynomial $t:\IN\to\IN$ such that complexity and degree of $f_n$ is bounded by $t(n)$. For more on Algebraic Circuits see [AB09], [MAH12]
+
+The class of polynomials that can be infinitesimally approximated by polynomial size algebraic circuits is denoted by \OL{VP}. Formal definition over field $\IC$ is as follows:
+\begin{definition}[\OL{VP}]
+We say that a polynomial family $\{f_n\},n\in \IN$ is in \OL{VP}, if there exists a family of sequences of polynomials $\{f_n^{(i)}\},n\in\IN$ in VP for $i=1,2,...$, such that for every $n$, the sequence of polynomials $f_n^{(i)},i=1,2,...$, converges coefficient-wise to $f_n$, in the usual complex topology.
+\end{definition}
+Note that if sequence of polynomials converges to a polynomial coefficient-wise then the convergence is also point-wise
+
+\begin{definition}[Hitting Set]
+A set $\SH\subset\IF^n$ is a hitting set for a circuit class $\SC$ if for every nonzero polynomial $f\in\SC$, there exists $\VEC a\in\SH$ such that $f(\VEC a)\ne0$.
+\end{definition}
+Next we define universal circuit for homogeneous $n$-variate polynomials\footnote{Polynomial is homogeneous if all monomials in polynomial with nonzero coefficient have same degree.} of degree $r$ and computable by circuits of size $s$, intuitively circuit $\Psi$ is universal for class $\SC$ of polynomials if every polynomial $f\in\SC$ is a projection of $\Psi$.
+\begin{definition}[Universal Circuit]
+A homogeneous algebraic circuit $\Psi$ is said to be universal for $n$-variate
+homogeneous circuits of size $s$ and degree $r$ if $\Psi$ has $n$ essential-inputs $\VEC x$ and $m$ auxiliary-inputs $\VEC y$, such that for every homogeneous $n$-variate polynomial $f$ of degree $r$ that is computed by an homogeneous algebraic circuit of size $s$ there exists an assignment $\VEC a$ to the $m$ auxiliary-variables of $\Psi$ such that the polynomial computed by $\Psi(\VEC x,\VEC a)$ is $f(\VEC x)$.
+\end{definition}
+Next theorem states existence of Universal circuit.
+\begin{theorem}[Existence of Universal Circuit\lbrack Raz08\rbrack]
+There exist constants $c_1$ and $c_2$ such that the following hold. For any
+natural numbers $n,s,r$ there exists a homogeneous circuit $\Psi$ such that $\Psi$ has $n$ essential-variables, $c_1\cdot sr^4$ auxiliary-variables, degree $c_2\cdot r$ and size $c_1\cdot sr^4$ and it is universal for $n$-variate homogeneous circuits of size $s$ and degree $r$. Furthermore, for any polynomial $f(\VEC x)$ that can be computed by $\Psi$ and any constant $\alpha$,
+the polynomial $\alpha\cdot f$ can also be computed by $\Psi$.
+\end{theorem}
+}

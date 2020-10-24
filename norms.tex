@@ -1,0 +1,137 @@
+\newcommand\norms{
+\subsection{Norms}
+\begin{definition}[Inner Product]
+Let $\IF$ be the field of real or complex numbers, and $V$ a vector space over $\IF$. An inner product on $V$ is a function which assigns to each ordered pair of vectors $\VEC v_1, \VEC v_2 \in V$ a scalar denoted by $\langle\VEC v_1, \VEC v_2\rangle$ in $\IF$ in such a way that for all $\VEC v_1, \VEC v_2,\VEC v_3 \in V$ and all scalars $c \in \IF$
+\begin{enumerate}
+\item $\langle\VEC v_1+\VEC v_2, \VEC v_3\rangle = \langle\VEC v_1,\VEC v_3\rangle+\langle\VEC v_2,\VEC v_3\rangle$.
+\item $\langle c\VEC v_1,\VEC v_2\rangle = c\langle\VEC v_1,\VEC v_2\rangle$.
+\item $\langle \VEC v_1,\VEC v_2\rangle = \overline{\langle\VEC v_2,\VEC v_1\rangle}$.
+\item $\langle\VEC v_1,\VEC v_1\rangle>0$ if $\VEC v_1 \ne 0$.
+\end{enumerate}
+\end{definition}
+\begin{definition}[Norm]
+Let $\IF$ be the field of real or complex numbers, and $V$ a vector space over $\IF$. A norm on $V$ is a function which assigns each vector $\VEC v \in V$ a scalar denoted by $\|\VEC v\|$ in $[0,+\infty)$ such that for all $\VEC v_1,\VEC v_2 \in V$ and scalar $c \in \IF$
+\begin{enumerate}
+\item $\|\VEC v_1+\VEC v_2\| \le \|\VEC v_1\| + \|\VEC v_2\|$
+\item $\|c\VEC v_1\| = |c|\cdot\|\VEC v_1\|$
+\item If $\|\VEC v_1\|=0$ then $\VEC v_1=0$
+\end{enumerate}
+\end{definition}
+\begin{lemma}[Inner Product in $\IR\lbrack\VEC x\rbrack$]
+Let $f,g\in \IR[\VEC x]$. Prove that the formula
+$$
+\langle f,g\rangle =\int_{[-1,1]^n} f(\VEC x)g(\VEC x) d\mu(\VEC x)
+$$ 
+defines inner product on the space $\IR[\VEC x]$.
+\end{lemma}
+\begin{lemma}[$L_2$ Norm on $\IR\lbrack\VEC x\rbrack$]
+Let $f\in \IR[\VEC x]$. Prove that the formula 
+$$
+\|f\|_2 = \Bigg(\int_{[-1,1]^n} f(\VEC x)^2d\mu(\VEC x)\Bigg)^{\frac{1}{2}}
+$$
+defines norm over $\IR[\VEC x]$. We call this norm the $L_2$ norm over $\IR[\VEC x]$. 
+\end{lemma}
+\begin{lemma}[$L_2$ Norm on $\IC\lbrack\VEC x\rbrack$]
+Let $f\in \IC[\VEC x]$. Prove that the formula 
+$$
+\|f\|_2 = \|\Re(f)\|_2+\|\Im(f)\|_2
+$$
+defines norm over $\IC[\VEC x]$. Where $\|\Re(f)\|_2$ and $\|\Im(f)\|_2$ are $L_2$ norm defined in above lemma over $\IR[\VEC x]$\footnote{Note the difference between $\VEC x$ in $\IR[\VEC x]$ and $\IC[\VEC x]$.}. We call this norm the $L_2$ norm over $\IC[\VEC x]$.
+\end{lemma}
+\begin{lemma}[Supremum Norm on $\IC\lbrack\VEC x\rbrack$]
+Let $f\in \IC[\VEC x]$. Prove that the formula
+$$
+\|f\|_{\infty} := \max_{\bm v\in[-1,1]^n}|f(\bm v)|.
+$$
+defines norm over $\IC[\VEC x]$. We call this norm the supremum norm.
+\end{lemma}
+\npara
+Proofs of Lemma 3, 4, 5 and 6 are very easy and left as exercise. We will use these lemmas as definitions of respective terms.
+
+We denote $n$-dimensional ball of radius $\alpha$ centered at $\bm u$ by $B(n,\alpha,\bm u)$ and its Lebesgue measure by $vol(n,\alpha)$.
+\begin{theorem}
+Let $f:\IR^n \to \IR$ be a homogeneous polynomial of degree r, then
+$$
+\|f\|_2 \ge \frac{1}{2^{n+1}}\|f\|_\infty\Big(vol(n,\frac{1}{4r^2})\Big)^{1/2}.
+$$
+\end{theorem}
+\begin{proof}
+Let $g = \frac{1}{\|f\|_\infty}f$, hence $\|g\|_\infty=1$. Let $\bm u\in[-1,1]^n$ such that $|g(\bm u)|=1$, Assume $g(\bm u)=1$ (The case for $g(\bm u)=-1$ is simillar). Define set $A = B(n,\frac{1}{4r^2},\bm u) \cap [-1,1]^n$. Since $\bm u\in[-1,1]^n$, at least $2^{-n}$ part of $B(n,\frac{1}{4r^2},\bm u)$ is inside of $[-1,1]^n$, also $\mu$ on $[-1,1]^n$ scale down the Lebesgue measure by $2^{-n}$, we have $\mu(A)\ge \frac{1}{4^n}vol(n,\frac{1}{4r^2})$.
+
+We claim that for any $\bm v\in A$, $g(\bm v)\ge \frac{1}{2}$. Since gradient is bounded by $2r^2$ on $[-1,1]^n$ and $\|\bm v-\bm u\|_2=\frac{1}{4r^2}$, maximum fall in the direction of $\bm v-\bm u$ is bounded by $\frac{1}{2}$, hence $g(\bm v) \ge \frac{1}{2}$, hence we have
+$$
+\|g\|_2=\Bigg(\int_{[-1,1]^n} g^2(x)d\mu(x)\Bigg)^{1/2} \ge \Bigg(\int_A \frac{1}{4} d\mu(x)\Bigg)^{1/2}\ge \Big(\frac{1}{4}\mu(A)\Big)^{1/2} \ge \frac{1}{2^{n+1}}\Big(Vol(n,\frac{1}{4r^2})\Big)^{1/2}
+.$$
+Claim is now trivial.
+\end{proof}
+Next we prove the result stating relation between $L_2$-norm of polynomial and largest coefficient of monomials in polynomial.
+\begin{theorem}
+Let $f$ be a $n$-variate homogeneous polynomial of degree $r$ and one of the coefficients in $f$ is at least $\alpha$. Then $\|f\|_2 \ge \alpha 2^{n/2}e^{-r}$.
+\end{theorem}
+\thmpara
+To prove this theorem, first we construct orthrogonal basis for space of $n$-variate polynomials. We start with natural basis of $\IR[x]$ i.e. $\{1,x,x^2,x^3,...\}$ and construct orthrogonal basis by Gram-Schmidt w.r.t. following inner product
+$$
+f\cdot g = \int_{-1}^1f(x)g(x)d\mu(x)
+$$
+Each basis polynomial obtained is called Legendre polynomial. We take this as given without going into the actual construction\footnote{Refer http://web.mit.edu/18.06/www/Spring09/legendre.pdf for actual construction.}. We denote by $L_k$ the $k^{th}$ Legendre polynomial. We will use the following properties of Legendre polynomials.
+\begin{enumerate}
+\item Leading coefficient(coefficient of degree term) of $L_k$ is $\frac{1}{2^k}{2k \choose k}$
+\item ${\displaystyle \int_{-1}^{1}L_{k}(x)L_{m}(x)\,\mathrm {d} x=\delta_{km}\frac{2}{2k+1}}$. Where $\delta_{km}$ is Kronecker delta.
+\item Degree of $L_k$ is $k$
+\end{enumerate}
+\npara
+
+For any $\bm e=(e_1,e_2,...,e_n)\in \IN^n$, define $L_{\bm e} = \prod_{i=1}^{n}L_{e_i}$. It is easy to see that coefficient of term $\bm x^{\bm e}$ in\footnote{$\bm x^{\bm e} = \prod _{i=1}^n x_i^{e_i}$} $L_{\bm e}$ is $\prod_{i=1}^n\frac{1}{2^{e_i}}{2e_i \choose e_i}$.
+
+\thmpara
+\begin{lemma}
+$\{L_{\bm e}:\forall \bm e \in \IN^n\}$ is orthrogonal family of polynomials in $\IR[\bm x]$ w.r.t inner product.
+$$
+f\cdot g = \int_{[-1,1]^n}f(\bm x)g(\bm x)d\mu(\bm x)
+$$
+\end{lemma}
+\begin{proof}
+\begin{align*}
+L_{\bm e_1}\cdot L_{\bm e_2} &=\int_{[-1,1]^n}\prod_{i=1}^{n}L_{e_{1i}}(x_i)\prod_{j=1}^{n}L_{e_{2j}}(x_j)d\mu(\bm x)\\&=\int_{-1}^1\int_{-1}^1...\int_{-1}^1\prod_{i=1}^n(L_{e_{1i}}(x_i)L_{e_{2i}}(x_i))d\mu(x_1)d\mu(x_2)...d\mu(x_n)\\&=\prod_{i=1}^n\int_{-1}^1L_{e_{1i}}(x_i)L_{e_{2i}}(x_i)d\mu(x_i)\\&=\prod_{i=1}^n\frac{2}{2e_{i}+1}\tag{$e_1=e_2=e$}\\&=0\tag{$e_1\ne e_2$}
+\end{align*}
+\end{proof}
+\begin{lemma}
+Let $f$ be a $n$-variate homogeneous polynomial of degree $r$. Then for any exponent vector $\bm e'=(e'_{1},e'_{2},...,e'_{n})$ such that $\sum_{i=1}^ne'_{i}=r$ we have
+$$
+l_{\bm e'} = c_{\bm e'}\prod_{i=1}^n2^{e'_{i}}\frac{1}{{2e'_{i} \choose e'_{i}}}
+$$
+Where $c_{\bm e'}$ is coefficient of $\bm x^{\bm e'}$ in $f$ and $l_{\bm e'}$ is coefficient of $L_{\bm e'}$ in Legendre expansion of $f$.
+\end{lemma}
+\begin{proof}
+\begin{align*}
+l_{\bm e'}&=\frac{f\cdot L_{\bm e'}}{\|L_{\bm e'}\|_2^2}=\frac{1}{\|L_{\bm e'}\|_2^2}\cdot \int_{[-1,1]^n}f\cdot L_{\bm e'}d\mu(\bm x)\\
+&=\frac{1}{\|L_{\bm e'}\|_2^2}\cdot \sum_{\bm e}\int_{[-1,1]^n}c_{\bm e}\bm x^{\bm e}L_{\bm e'}d\mu(\bm x)\\
+&=\frac{1}{\|L_{\bm e'}\|_2^2}\cdot \sum_{\bm e}c_{\bm e}\prod_{i=1}^n\int_{-1}^{1}x_i^{e_i}L_{e'_{i}}d\mu(x_i)
+\end{align*}
+$f$ is homogeneous $\Rightarrow \forall \bm e\ \exists i(e_i<e'_i)\Rightarrow $ by consrtuction of univariate Legendre basis $\int_{-1}^1x_i^{e_i}L_{e'_i}d\mu(x_i)=0 \Rightarrow$ if $\bm e \ne \bm e'$ then $\int_{[-1,1]^n} \bm x^{\bm e} L_{\bm e'}d\mu(\bm x)=0$, thus we have
+\begin{align*}
+l_{\bm e'}&=\frac{c_{\bm e'}}{\|L_{\bm e'}\|_2^2}\cdot \prod_{i=0}^{n} \int_{-1}^1 x_i^{e'_i}L_{e'_i}d\mu(x_i)= \frac{c_{\bm e'}}{\|L_{\bm e'}\|_2^2}\cdot \int_{[-1,1]^n}\bm x^{\bm e'}L_{\bm e'}d\mu(\bm x)\\
+&=\frac{c_{\bm e'}}{\|L_{\bm e'}\|_2^2}\cdot \int_{[-1,1]^n}\Bigg[\prod_{i=1}^n\frac{2^{e'_i}}{{2e'_i \choose e'_i}}(L_{\bm e'} - lower\ degree\ terms\ in\ L_{\bm e'})\Bigg]L_{\bm e'}d\mu(\bm x)\\
+&=c_{\bm e'}\prod_{i=0}^{n}\frac{2^{e'_i}}{{2e'_i \choose e'_i}}\cdot \frac{1}{\|L_{\bm e'}\|_2^2}\int_{[-1,1]^n}L_{\bm e'}^2d\mu(\bm x)\\
+\tag{$\int_{[-1,1]^n}(lower\ degree\ terms\ in\ L_{\bm e'})L_{\bm e'}d\mu(\bm x)=0$}
+\end{align*}
+\end{proof}
+No we will give the proof of theorem 1
+\begin{proof}[Proof of Theorem 1]
+Let $f = \sum_{\bm e}l_{\bm e}L_{\bm e}$ be the Legendre expansion of $f$
+\begin{align*}
+\|f\|_2^2 &=\int_{[-1,1]^n}\sum_{\bm e_1, \bm e_2}l_{\bm e_1}l_{\bm e_2}(L_{\bm e_1}\cdot L_{\bm e_2})d\mu(\bm x)=\sum_{\bm e}\int_{[-1,1]^n}l_{\bm e}^2L_{\bm e}^2d\mu(\bm x)\\
+&\ge\alpha^2\prod_{i=0}^n\frac{2}{2e_i+1}\ge\alpha^2\frac{2^n}{2r/n+1}\ge\alpha^22^ne^{2r}
+\end{align*}
+\end{proof}
+We will prove one more result about relation between Euclidean norm of coeffocoent vector of polynomial and $L_2$ norm of polynomial.
+\begin{lemma}
+Let $f$ be a $n$-variate polynomial with $S$ monomials. Let $\bm f \in \IR^S$ be the coefficient vector of f. Then we have $\|f\|_2 \le \|f\|_\infty \ge \sqrt{S}\|\bm f\|_2$
+\end{lemma}
+\begin{proof}
+$\|f\|_2\le \|f\|_\infty$ is easy. We will prove second inequality. Let $f=\sum_{M}c_MM$ where $M$ is a monomial in $f$, for any $v\in [-1,1]^n$
+$$
+|f(v)|=\Big|\sum_{M}c_MM\Big|\le \sum_{M}|c_M|\le\sqrt{S}\Big(\sum_M c_M^2\Big)^{1/2}\le\sqrt{S} \|\bm f\|_2
+$$
+\end{proof}
+}

@@ -1,0 +1,47 @@
+\newcommand\algo{
+\npara
+\section{Algorithm}
+\begin{algorithm}[H]
+\SetAlgoNoLine
+\KwIn{n,s,r}
+$\eta = 2^{-n}\cdot\frac{1}{160\cdot(C_{CW}\cdot n \cdot r^2)^r}$.\
+
+\vspace{2ex}
+
+$c = \frac{1}{2^{n+1}}\Big(vol(n,\frac{1}{4r^2})\Big)^{\frac{1}{2}}$.\
+
+\vspace{2ex}
+
+$m = (nsr)^{c_2}$.\
+
+\vspace{2ex}
+
+$\delta =\frac{\eta}{(16nr^2)^{2n+1}}$.\
+
+\vspace{2ex}
+
+\While{Robust set not found yet}{
+Let $\{\VEC v_1,\VEC v_2,\VEC v_3,...,\VEC v_m\}\in G_{\delta,r}$ so that $(\VEC v_1,\VEC v_2,\VEC v_3,...,\VEC v_m)$ is the lexicographically next string in $G_{\delta,r}$.\
+
+Check whether there is $\VEC a$ for which $\psi(\VEC a,1)$ is true and $\phi(\VEC a,\eta c)$ is false.\
+
+\If{no solution $\VEC a$ is found}{\Return{$\SH=\{\VEC v_1,\VEC v_2,\VEC v_3,...,\VEC v_m\}$}.}
+ }
+
+\end{algorithm}
+
+\begin{proof}[Correctness]
+Algorithm always output some set and terminate since we proved that there is $(nsr)^{c_2}$ sized hitting set.
+
+Let $\VEC v_1,...\VEC v_m$ be the current set to check. Let $\VEC a$ be any assignment for the auxiliary variables of the universal circuit and let $f=\Psi(\VEC x,\VEC a)$. If $\psi(\VEC a,1)$ is true then for some $u\in[-1,1]^n,|f(\VEC u)|\ge 1$. As $\|f\|_\infty\ge 1$, Corollary 2.6 implies that
+$$
+\|f\|_2\ge \frac{1}{2^{n+1}}\cdot \Big( vol(n,\frac{1}{4r^2})\Big)^{\frac{1}{2}}
+$$
+As $\SH$ is $\eta$-robust hitting set for $v(n,s,r)$, for some $i$
+$$
+|f(\VEC v_i)|\ge\eta\cdot \|f\|_2\ge \eta c
+$$
+Thus, $\phi(\VEC a,\epsilon)$ will return true. In particular, no solution $a$ will be found and so the algorithm will return $\SH$ if it did not halt before reaching this particular $\SH$. Finally, note that there are polynomials $f$ for which $\psi(\VEC a,1)$ is true. Indeed, if $f\ne0$ then there is some multiple of it that at some point in $[-1,1]^n$ will get value at least $1$. This multiple of $f$ is also computed by the universal circuit.
+\end{proof}
+
+}

@@ -1,0 +1,51 @@
+\newcommand\markov{
+\subsection{Markov Inequality}
+\npara
+Let $f$ be a $n$-variate polynomial of degree at most $r$, $T$ be a convex compact in $\IR^n,\ \partial T$ be the boundry of $T$ and for every $\VEC v \in T,\ |f(\VEC v)| \le 1$. Let $\VEC v^* \in T$ such that for all $\VEC v \in T,\ \|(\nabla f)(\VEC v^*)\|_2 \ge \|(\nabla f)(\VEC v)\|_2$.
+
+For any $\VEC v_0 \in \partial T$, let $\VEC u \in \IR^n$ be unit vector such that for any $\VEC v \in T, \langle \VEC v-\VEC v_0,u \rangle \le 0$. We call such $\VEC u$ an outer normal of $T$ at $\VEC v_0$ (Note that for any $\VEC v_0$ such $u$ exist but need not be unique, also for any $\VEC u$ there is $\VEC v_0$ such that $\VEC u$ is outer normal of $T$ at $\VEC v_0$ again need not be unique). For any outer normal $\VEC u$ of $T$ at $\VEC v_0$, let $H_u = \{\VEC w:\langle \VEC w-\VEC v_0,\VEC u \rangle =0\}$. We call $H_u$ the support hyperplane of $T$ at $\VEC v_0$. Let $\omega_u = |\langle \VEC w_1-\VEC w_2,\VEC u \rangle| $ for any $\VEC w_1 \in H_u, \VEC w_2 \in H_{-u}$, the distance between $H_u$ and $H_{-u}$. We denote $\lambda = inf \{\omega_u : \VEC u \in \IR^n, \|u\|_2 = 1,\ \omega_u$ is distance between $H_u$ and $H_{-u}\}$
+\thmpara
+\begin{theorem}
+For all $\VEC v \in T,\  \|(\nabla f)(\VEC v)\|_2 < \frac{4r^2}{\lambda}$.
+\end{theorem}
+If $f$ is constant function then result is trivial, hence we assume $f$ is not constant. We will use following result while proving the theorem:
+
+\begin{theorem}
+If $p:[-1,1] \to [-1,1]$ be a polynomial of degree $r$ then for all $v,\ |p'(v)| \le r^2$
+\end{theorem}
+
+\begin{corollary}
+If $p:[a,b] \to [-1,1]$ be a polynomial of degree $r$ then for all $v,\ |p'(v)| \le \frac{2r^2}{b-a}$.
+\end{corollary}
+\begin{proof}
+This can be easily proved by applying scaling and translation on polynomial and using theorem 2.
+\end{proof}
+We will use following lemma as one of the case.
+\begin{lemma}
+If $|f(\VEC v^*)| = 1$ then $\|(\nabla f)(\VEC v^*)\|_2 \le \frac{2r^2}{\lambda}$
+\end{lemma}
+\begin{proof}
+$\VEC v^* \in \partial T$ since otherwise we can find a point $\VEC v_0 \in T$ such that $|f(\VEC v_0)|>1$ using $\|(\nabla f)(\VEC v*)\|_2 \ne 0$ and $|f(\VEC v^*)| = 1$ (which contradict $|f(\VEC v)| \le 1$ for all $\VEC v \in T$). Let $f(\VEC v^*) = 1$ (the case for $f(\VEC v^*) = -1$ is similar) and $\VEC u = (\nabla f)(\VEC v^*) / \|(\nabla f)(\VEC v^*)\|_2$, the unit vector in the direction of gradient at $\VEC v^*$. We claim that $\VEC u$ is the outer normal of $T$ at $\VEC v^*$. If not, there is $\VEC v_0 \in T$ such that $\langle \VEC v_0-\VEC v^*,\VEC u\rangle > 0$ which implies $f$ is strictly increasing in the direction $\VEC v_0-\VEC v^*$ at $\VEC v^*$. Since $T$ is convex, there is $\VEC v_1 \in T$ on line segment joining $\VEC v_0$ and $\VEC v^*$ such that $f(\VEC v_1) >1$ since $f(\VEC v^*) = 1$, which contradicts for every $\VEC v \in T,\ |f(\VEC v)| \le 1$. 
+\npara
+
+Let $H_u$ and $H_{-u}$ be the support hyperplanes of $T$ at $\VEC v^*$ and $\VEC v_1$ respectively and $\omega_u$ is the distance between them. Since $T$ is convex, line segment $[\VEC v^*,\VEC v_1] \in T$. $f|_{[\VEC v^*,\VEC v_1]}$ is univariate polynomial of degree at most $r$ given by $f|_{[\VEC v^*,\VEC v_1]}(t) = f(\VEC v^*+t\VEC w)$ where $t \in [0,\|v_1-v^*\|_2]$ and $\VEC w=(\VEC v_1-\VEC v^*)/\|\VEC v_1-\VEC v^*\|_2$. By Corollary 1, we have
+$$\frac{2r^2}{\|\VEC v_1-\VEC v^*\|_2} \ge |f|_{[\VEC v^*,\VEC v_1]}'(t)|$$
+In perticular for $t=0$
+\begin{align*}\frac{2r^2}{\|\VEC v_1-\VEC v^*\|_2} &\ge |f|_{[\VEC v^*,\VEC v_1]}'(0)|=|\langle (\nabla f)(\VEC v^*),\VEC w\rangle|\\&=\|(\nabla f)(\VEC v^*)\|_2 \cdot \frac{\omega_u}{\|\VEC v_1-\VEC v^*\|_2}\\&\ge \frac{\lambda \cdot \|(\nabla f)(\VEC v^*)\|_2}{\|\VEC v_1-\VEC v^*\|_2}\\\frac{2r^2}{\lambda} &\ge \|(\nabla f)(\VEC v*)\|_2
+\end{align*}
+\end{proof}
+
+\begin{proof}[Proof of Theorem 1]
+Since $\|(\nabla f)(\VEC v^*)\|_2 \ge \|(\nabla f)(\VEC v)\|_2\ \forall \VEC v \in T$, it suffices to prove that $\|(\nabla f)(\VEC v^*)\|_2$ $<$ $\frac{4r^2}{\lambda}$. the case for $|f(\VEC v^*)|=1$ is proved in lemma above, hence we can assume $|f(\VEC v^*)| < 1$. Let $\VEC u=(\nabla f)(\VEC v^*)/\|(\nabla f)(\VEC v^*)\|_2$, $H_u$ and $H_{-u}$ be the support hyperplanes of $T$ at $\VEC v_0$ and $\VEC v_1$ respectively. Assume distance\footnote{The distance is defined as $d(H_u,\VEC v^*) = |\langle \VEC v-\VEC v^*,\VEC u \rangle|$ for  any $\VEC v \in H_u$.} between $\VEC v^*$ and $H_u$ is $\ge \omega_u/2$. (Proof of the case $d(H_{-u},t^*) \ge \omega_u / 2$ is simillar). Since $|f(\VEC v^*)|<1$, we can find $\VEC v_\delta$ in the direction of $\VEC v^*-\VEC v_0$ such that $|f(\VEC v)| \le 1$ for any $\VEC v$ on segment $[\VEC v_0,\VEC v_\delta]$ and $d(H_u,\VEC v_\delta) > \omega_u/2 \ge \lambda/2$. By applying Corollary 1 to univariate polynomial $f|_{[\VEC v_0,\VEC v_\delta]}(t) = f(\VEC v_0+t\VEC w)$, $t \in [0,\|\VEC v_\delta-\VEC v_0\|_2]$, $\VEC w=(v_\delta-v_0)/\|v_\delta-v_0\|_2$ and degree $\le r$, we get
+$$\frac{2r^2}{\|v_\delta-\VEC v_0\|_2} \ge |f|_{[\VEC v_0,v_\delta]}'(t)|$$
+
+In perticular for $t = \|\VEC v^*-\VEC v_0\|_2$ 
+\begin{align*}
+\frac{2r^2}{\|\VEC v_\delta-\VEC v_0\|_2}| &\ge |f|_{[\VEC v_0,v_\delta]}'(\|\VEC v^*-\VEC v_0\|_2)|\\
+&=|\langle(\nabla f)(\VEC v*),\VEC w\rangle|\\
+&=\|(\nabla f)(\VEC v^*)\|_2\cdot \frac{d(H_u,v_\delta)}{\|v_\delta-\VEC v_0\|_2}\\
+&>\frac{\lambda \|(\nabla f)(\VEC v^*)\|_2}{2\|v_\delta-\VEC v_0\|_2}\\
+\frac{4r^2}{\lambda} &> \|(\nabla f)(\VEC v^*)\|_2
+\end{align*}
+\end{proof}
+}
